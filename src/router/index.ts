@@ -1,9 +1,9 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized} from 'vue-router'
 import User from "@/pages/User.vue";
 import Admin from "@/pages/Admin.vue";
 import Auth from "@/pages/Auth.vue";
 
-function UserGuard(to, from, next) {
+function UserGuard(_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) {
   let isAuthenticated= false;
   const userData = localStorage.getItem("sb-ylaqgqguaxteixfjjlaj-auth-token");
   let user = null;
@@ -29,7 +29,7 @@ function UserGuard(to, from, next) {
   }
 }
 
-function AuthGuard(to, from, next) {
+function AuthGuard(_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) {
   let isAuthenticated= false;
   const userData = localStorage.getItem("sb-ylaqgqguaxteixfjjlaj-auth-token");
   let user = null;
@@ -54,7 +54,7 @@ function AuthGuard(to, from, next) {
   }
 }
 
-function AdminGuard(to, from, next) {
+function AdminGuard(_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) {
   let isAuthenticated= false;
   const userData = localStorage.getItem("sb-ylaqgqguaxteixfjjlaj-auth-token");
   let user = null;
@@ -81,6 +81,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'house',
+      component: User,
+      beforeEnter: UserGuard,
+    },
+    {
       path: '/auth',
       name: 'auth',
       component: Auth,
@@ -90,7 +96,9 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: User,
-      beforeEnter: UserGuard
+      beforeEnter: UserGuard,
+      redirect: '/',
+      children: []
     },
     {
       path: '/admin',

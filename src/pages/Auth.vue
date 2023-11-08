@@ -4,14 +4,8 @@
     import {Auth} from '@nuxtbase/auth-ui-vue'
     import router from "@/router";
     import {useRoute} from "vue-router";
-
-    const emit = defineEmits(['signOut']);
     const route = useRoute();
     const user = route.params.data;
-
-    const signOut = () => {
-        emit('signOut');
-    }
 
     supabaseClient.auth.onAuthStateChange((event) => {
         if (event === "SIGNED_OUT") {
@@ -36,14 +30,6 @@
             :providers="['google', 'facebook', 'twitter']"
         />
     </div>
-
-    <button
-            v-if="user"
-            type="button"
-            @click="signOut"
-    >
-        Sign Outkfdsmlksjfldksjflksdfjklds
-    </button>
 </template>
 
 <style scoped>
