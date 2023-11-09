@@ -42,13 +42,6 @@
             })
           }
         },
-        {
-          label: 'Logout',
-          icon: 'pi pi-sign-out',
-          command: async () => {
-            await signOut();
-          }
-        }
       ]
     },
   ]);
@@ -60,11 +53,6 @@
     }
     isForSmallScreens.value = false;
   })
-
-  const signOut = async () => {
-      await supabaseClient.auth.signOut();
-      await router.push("/auth");
-  }
 </script>
 
 <template>
