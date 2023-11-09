@@ -62,7 +62,7 @@
         <span class="text-xl font-semibold">PRIME<span class="text-primary">APP</span></span>
       </RouterLink>
     </template>
-    <template #submenuheader="{ submenuheader: item }">
+    <template #submenuheader="{ item }">
       <span class="text-primary font-bold">{{ item.label }}</span>
     </template>
     <template #item="{ item, props }">
