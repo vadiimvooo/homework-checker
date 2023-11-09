@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import type {PropType} from "vue";
-  import {MenuItem} from "primevue/menuitem";
+  import {type MenuItem} from "primevue/menuitem";
   import {ref} from "vue";
+  import type {IUser} from "@/models/User";
 
   defineProps({
     isForSmallScreens: {
@@ -9,7 +10,7 @@
       required: true
     },
     user: {
-      type: Object,
+      type: Object as PropType<IUser>,
       required: true
     },
     items: {
@@ -30,7 +31,7 @@
       :model="items"
       :pt="{
         root: {
-          class: 'w-[200px] md:w-[320px] h-[100vh] md:w-15rem flex flex-col overflow-auto'
+          class: 'w-[320px] h-[100vh] flex flex-col overflow-auto'
         },
         start: {
           class: 'flex-none'
@@ -61,7 +62,7 @@
         <span class="text-xl font-semibold">PRIME<span class="text-primary">APP</span></span>
       </RouterLink>
     </template>
-    <template #submenuheader="{ item }">
+    <template #submenuheader="{ submenuheader: item }">
       <span class="text-primary font-bold">{{ item.label }}</span>
     </template>
     <template #item="{ item, props }">
@@ -261,7 +262,7 @@
           <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
           <a v-ripple class="m-3 flex items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-            <span class="font-bold">Amy Elsner</span>
+            <span class="font-bold">{{ user?.email?.split("@")[0]}}</span>
           </a>
         </div>
       </div>
