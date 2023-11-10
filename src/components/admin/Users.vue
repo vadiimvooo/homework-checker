@@ -48,7 +48,7 @@ import moment from "moment";
     console.log(user);
 
     router.push({
-      name: 'user',
+      name: 'statistic',
       params: {
         id: user.id
       },
@@ -57,7 +57,7 @@ import moment from "moment";
 </script>
 
 <template>
-  <Breadcrumb :home="home" :model="items">
+  <Breadcrumb :home="home" :model="items" class="h-[56px]">
     <template #item="{ item, props }">
       <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
         <a :href="href" v-bind="props.action" @click="navigate">

@@ -44,7 +44,7 @@
         class: `w-[320px] h-[100vh] flex flex-col overflow-auto ${additionalClasses ? additionalClasses : ''}`
       },
       start: {
-        class: 'flex-none'
+        class: 'flex-none h-[50px]'
       },
       menu: {
         class: 'grow'
@@ -54,6 +54,9 @@
       },
       content: {
         class: 'transition-all'
+      },
+      separator: {
+        class: 'm-0'
       }
     }"
   >

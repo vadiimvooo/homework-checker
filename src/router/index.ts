@@ -1,12 +1,14 @@
 import {createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized} from 'vue-router'
 import User from "@/pages/User.vue";
-import UserComp from "@/components/UserComp.vue";
+import UserComp from "@/components/admin/UserComp.vue";
 import Admin from "@/pages/Admin.vue";
 import Auth from "@/pages/Auth.vue";
 import NotFoundPage from "@/pages/NotFoundPage.vue";
-import Users from "@/components/Users.vue";
+import Users from "@/components/admin/Users.vue";
 import Settings from "@/components/Settings.vue";
-import AdminMain from "@/components/AdminMain.vue";
+import AdminMain from "@/components/admin/AdminMain.vue";
+import Statistic from "@/components/admin/Statistic.vue";
+import Tasks from "@/components/admin/Tasks.vue";
 
 function UserGuard(_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) {
   let isAuthenticated= false;
@@ -130,6 +132,18 @@ const router = createRouter({
           path: 'users/:id',
           name: 'user',
           component: UserComp,
+          children: [
+            {
+              path: '',
+              name: 'statistic',
+              component: Statistic
+            },
+            {
+              path: '',
+              name: 'tasks',
+              component: Tasks
+            }
+          ]
         }
       ]
     },
