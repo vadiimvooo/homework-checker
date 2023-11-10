@@ -18,6 +18,9 @@
     items: {
       type: Object as PropType<MenuItem[]>,
       required: true
+    },
+    additionalClasses: {
+      type: String,
     }
   });
   const visible = ref(false);
@@ -38,7 +41,7 @@
     :model="items"
     :pt="{
       root: {
-        class: 'w-[320px] h-[100vh] flex flex-col overflow-auto'
+        class: `w-[320px] h-[100vh] flex flex-col overflow-auto ${additionalClasses ? additionalClasses : ''}`
       },
       start: {
         class: 'flex-none'
@@ -48,6 +51,9 @@
       },
       end: {
         class: 'flex-none'
+      },
+      content: {
+        class: 'transition-all'
       }
     }"
   >

@@ -62,8 +62,11 @@
         :items="items"
         :user="user"
         :is-for-small-screens="isForSmallScreens"
+        additionalClasses="flex-none"
     />
-    <router-view></router-view>
+    <div class="flex-auto min-w-0">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
